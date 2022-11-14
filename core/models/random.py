@@ -1,5 +1,4 @@
-import requests
-import httpx
+from random import randrange
 
 
 def catcher(func):
@@ -9,7 +8,7 @@ def catcher(func):
     return wrapper
 
 
-class HttpRaw():
+class Random():
     # def __new__(self, q):
     #     self.q = q
 
@@ -20,8 +19,8 @@ class HttpRaw():
         pass
 
     def __call__(self):
-        # print(f'msg: from {__class__.__name__}')
-        return f'msg: from {__class__.__name__}\n'
+        # print(f'msg: from {__class__.__name__} with data: {randrange(100)}')
+        return f'msg: from {__class__.__name__} with data: {randrange(100)}\n'
 
     @catcher
     def request():

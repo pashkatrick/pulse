@@ -1,8 +1,9 @@
-from flask import Flask
-from core import task_manager
+from flask import Flask, Response
+from core import task_manager, message_manager
 
 app = Flask(__name__)
-tm = task_manager.TaskMaster()
+mm = message_manager.MessageManager()
+tm = task_manager.TaskManager(message_manager=mm)
 
 
 @app.route('/')
@@ -26,3 +27,15 @@ def stop():
 def check():
     tm.check()
     return 'checked'
+
+# TODO: delegate to FE
+@app.route('/listen', methods=['GET'])
+def listen():
+
+    def stream():
+        messages = mm.consume()  # returns a queue.Queue
+        while True:
+            msg = messages.get()  # blocks until a new message arrives
+            yield msg
+
+    return Response(stream(), mimetype='text/event-stream')
