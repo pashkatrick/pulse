@@ -9,6 +9,14 @@ class TypeEnum(str, Enum):
     http_status = 'HTTP-STATUS'
 
 
+class TileResponse(bm):
+    type: TypeEnum
+    response: int | str
+
+    class Config:
+        use_enum_values = True
+
+
 class Params(bm):
     pass
 

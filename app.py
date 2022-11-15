@@ -1,9 +1,10 @@
 from flask import Flask, Response
-from core import task_manager, message_manager
+from core import task_manager, message_manager, prepare_manager
 
 app = Flask(__name__)
 mm = message_manager.MessageManager()
-tm = task_manager.TaskManager(message_manager=mm)
+prep = prepare_manager.PrepareManager()
+tm = task_manager.TaskManager(message_manager=mm, prepared_data=prep.prepare())
 
 
 @app.route('/')

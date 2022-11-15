@@ -1,18 +1,19 @@
 from threading import Thread
 from time import sleep
-from .models import http, random
+import json
 
 
 class TaskManager():
 
-    def __init__(self, message_manager):
+    def __init__(self, message_manager, prepared_data: list):
         self._running = True
         self._sse = message_manager
+        self._cls = prepared_data
 
     def start(self):
         self._running = True
         # TODO: duplicate thread issue
-        t = Thread(target=self.run, daemon=True, name='Infinity')
+        t = Thread(target=self.run, daemon=True, name='infinity')
         t.start()
 
     def stop(self):
@@ -20,17 +21,15 @@ class TaskManager():
 
     def run(self):
         sse = self._sse
-        cls_list = self.prepare()
         while self._running:
             sleep(2)
-            for cls in cls_list:
-                sse.produce(msg=cls.__call__())
+            for cls in self._cls:
+                test = cls.__call__()
+                print(test)
+                # print to web | optional
+                js = json.dumps(test).encode('utf-8')
+                sse.produce(msg=js)
 
-    # TODO: separate of course
-    def prepare(self) -> list:
-        a = http.HttpRaw()
-        b = random.Random()
-        return [a, b]
 
     def check(self):
         if self._running:

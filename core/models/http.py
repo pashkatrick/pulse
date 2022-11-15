@@ -1,5 +1,6 @@
 import requests
 import httpx
+from .base import Base
 
 
 def catcher(func):
@@ -9,23 +10,14 @@ def catcher(func):
     return wrapper
 
 
-class HttpRaw():
-    # def __new__(self, q):
-    #     self.q = q
+class HttpRaw(Base):
 
     def __init__(self):
-        pass
+        self.tile_type = 'http_status'
 
-    def __str__(self):
-        pass
-
-    def __call__(self):
-        # print(f'msg: from {__class__.__name__}')
-        return f'msg: from {__class__.__name__}\n'
-
-    @catcher
-    def request():
-        pass
+    def request(self):
+        response = requests.get('https://example.com/')
+        return f'msg: from {__class__.__name__} with status: {response.status_code}'
 
     def __available():
         pass
