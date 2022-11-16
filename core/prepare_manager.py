@@ -1,18 +1,39 @@
-from .models import schema, http, random, ping, port
+from .models import schema
+from decouple import config
 
 
 class PrepareManager():
 
     def __init__(self):
-        # self.scheme = schema.ConfigSchema()
-        pass
+        self.config_path = config('PU_CONFIG')
 
     def read_config(self):
-        pass
+        scheme = schema.ConfigSchema.parse_file(self.config_path)
+        return scheme.tiles
 
-    def prepare(self) -> list:
-        a = http.HttpRaw()
-        b = random.Random()
-        c = ping.Ping()
-        d = port.Port()
-        return [a, b, c, d]
+    def prepare_cls(self) -> list:
+        tiles = self.read_config()
+        cls_list = []
+        for tile in tiles:
+            module_name, class_name = self._convert(tile.type.value)
+            module = __import__('core.models', globals(),
+                                locals(), [module_name], 0)
+            class_ = getattr(module, class_name)
+            instance = class_()
+            cls_list.append(instance)
+        return cls_list
+
+    # def prepare(self) -> list:
+    #     a = http.HttpStatus()
+    #     b = random.Random()
+    #     c = port.Port()
+    #     return [a, b, c]
+
+    def _convert(self, tile_name: str):
+        if '-' in tile_name:
+            module_name = tile_name.lower().replace('-', '_')
+            class_name = module_name.replace('_', ' ').title().replace(' ', '')
+        else:
+            module_name = tile_name.lower()
+            class_name = module_name.capitalize()
+        return module_name, class_name

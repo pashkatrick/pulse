@@ -1,5 +1,4 @@
 import requests
-import httpx
 from .base import Base
 
 
@@ -10,7 +9,7 @@ def catcher(func):
     return wrapper
 
 
-class HttpRaw(Base):
+class HttpStatus(Base):
 
     def __init__(self):
         self.tile_type = 'http_status'

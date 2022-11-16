@@ -4,7 +4,8 @@ from core import task_manager, message_manager, prepare_manager
 app = Flask(__name__)
 mm = message_manager.MessageManager()
 prep = prepare_manager.PrepareManager()
-tm = task_manager.TaskManager(message_manager=mm, prepared_data=prep.prepare())
+# TODO: call the more univ method _cls
+tm = task_manager.TaskManager(message_manager=mm, prepared_data=prep.prepare_cls())
 
 
 @app.route('/')

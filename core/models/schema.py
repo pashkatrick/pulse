@@ -9,8 +9,15 @@ class TypeEnum(str, Enum):
     http_status = 'HTTP-STATUS'
 
 
+class StatusEnum(str, Enum):
+    green = 'green'
+    yellow = 'yellow'
+    red = 'red'
+
+
 class TileResponse(bm):
     type: TypeEnum
+    status: StatusEnum | None
     response: int | str
 
     class Config:
