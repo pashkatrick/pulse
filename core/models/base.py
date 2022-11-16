@@ -1,4 +1,4 @@
-from .schema import TileResponse, TypeEnum
+from .schemes import TileResponse, TypeEnum
 
 
 class Base():

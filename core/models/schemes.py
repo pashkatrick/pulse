@@ -28,10 +28,15 @@ class Params(bm):
     pass
 
 
+class Alert(bm):
+    pass
+
+
 class Tile(bm):
     type: TypeEnum | None
     label: str
     params: Params | None
+    alert: Alert | None
 
 
 class ConfigSchema(bm):

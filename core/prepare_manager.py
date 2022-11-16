@@ -1,4 +1,4 @@
-from .models import schema
+from .models import schemes
 from decouple import config
 
 
@@ -8,7 +8,7 @@ class PrepareManager():
         self.config_path = config('PU_CONFIG')
 
     def read_config(self):
-        scheme = schema.ConfigSchema.parse_file(self.config_path)
+        scheme = schemes.ConfigSchema.parse_file(self.config_path)
         return scheme.tiles
 
     def prepare_cls(self) -> list:
