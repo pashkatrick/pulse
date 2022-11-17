@@ -11,8 +11,6 @@ class MessageManager:
         return self.listeners[-1]
 
     def produce(self, msg):
-        # We go in reverse order because we might have to delete an element,
-        #  which will shift the indices backward
         for i in reversed(range(len(self.listeners))):
             try:
                 self.listeners[i].put_nowait(msg)

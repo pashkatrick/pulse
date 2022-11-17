@@ -130,4 +130,5 @@ dmypy.json
 .DS_Store
 helper
 *config.json
+*theme.json
 tests

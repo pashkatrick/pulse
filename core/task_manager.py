@@ -18,6 +18,7 @@ class TaskManager():
 
     def stop(self):
         self._running = False
+        return dict(data='stopped')
 
     def run(self):
         sse = self._sse
@@ -30,9 +31,5 @@ class TaskManager():
                 js = json.dumps(test).encode('utf-8')
                 sse.produce(msg=js)
 
-
     def check(self):
-        if self._running:
-            return 'Still running'
-        else:
-            return 'Stoped/Completed'
+        return dict(data='running') if self._running else dict(data='not running')

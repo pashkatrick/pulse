@@ -23,12 +23,6 @@ class PrepareManager():
             cls_list.append(instance)
         return cls_list
 
-    # def prepare(self) -> list:
-    #     a = http.HttpStatus()
-    #     b = random.Random()
-    #     c = port.Port()
-    #     return [a, b, c]
-
     def _convert(self, tile_name: str):
         if '-' in tile_name:
             module_name = tile_name.lower().replace('-', '_')

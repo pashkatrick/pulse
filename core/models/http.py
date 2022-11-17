@@ -17,12 +17,3 @@ class HttpStatus(Base):
     def request(self):
         response = requests.get('https://example.com/')
         return f'msg: from {__class__.__name__} with status: {response.status_code}'
-
-    def __available():
-        pass
-
-    def __add_cookies():
-        pass
-
-    def __data_extract():
-        pass
