@@ -1,0 +1,41 @@
+{
+    "version": "2.0",
+    "columns": 2,
+    "tiles": [
+        {
+            "type": "RANDOM",
+            "label": "It's a random label",
+            "params": {},
+            "alert": {
+                "value": "",
+                "condition": "",
+                "action": ""
+            }
+        },
+        {
+            "type": "HTTP-STATUS",
+            "label": "is 200 ok?",
+            "params": {
+                "url": ""
+            },
+            "alert": {
+                "value": "",
+                "condition": "",
+                "action": ""
+            }
+        },
+        {
+            "type": "PORT",
+            "label": "8080 always open",
+            "params": {
+                "host": "",
+                "port": ""
+            },
+            "alert": {
+                "value": "",
+                "condition": "",
+                "action": ""
+            }
+        }        
+    ]
+}
