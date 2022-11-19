@@ -40,3 +40,7 @@ def listen():
             yield msg
 
     return Response(stream(), mimetype='text/event-stream')
+
+
+if __name__ == '__main__':
+    app.run()
