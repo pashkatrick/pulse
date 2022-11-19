@@ -1,11 +1,10 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from core import task_manager, message_manager, prepare_manager
 
 app = Flask(__name__)
 mm = message_manager.MessageManager()
 prep = prepare_manager.PrepareManager()
-tm = task_manager.TaskManager(
-    message_manager=mm, prepared_data=prep.prepare_cls())
+tm = task_manager.TaskManager(mm)
 
 
 @app.route('/')
@@ -15,8 +14,14 @@ def hello_world():
 
 @app.route('/start')
 def start():
+    conf = request.args.get('config')
+    theme = request.args.get('theme')
+    # TODO: more exceptions and path validation
+    if conf or theme:
+        prep.init_config(conf, theme)
+    tm.init_cls(prep.prepare_cls())
     tm.start()
-    return 'started'
+    return dict(data='started')
 
 
 @app.route('/stop')
