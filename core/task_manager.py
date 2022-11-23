@@ -11,15 +11,16 @@ class TaskManager():
         self._running = True
         self._sse = message_manager
         self._cls = []
+        self.thread = ''
 
     def start(self):
         self._running = True
-        # TODO: duplicate thread issue
-        t = Thread(target=self.run, daemon=True, name='infinity')
-        t.start()
+        self.thread = Thread(target=self.run, daemon=True, name='infinity')
+        self.thread.start()
 
     def stop(self):
         self._running = False
+        self.thread.join()
         return dict(data='stopped')
 
     def run(self):
