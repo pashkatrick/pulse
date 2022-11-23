@@ -17,7 +17,7 @@ class PrepareManager():
         cls_list = []
         for tile in tiles:
             module_name, class_name = self._convert(tile.type.value)
-            module = __import__('core.models', [module_name], 0)
+            module = __import__('core.models', globals(), locals(), [module_name], 0)
             class_ = getattr(module, class_name)
             instance = class_()
             cls_list.append(instance)

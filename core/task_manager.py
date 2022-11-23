@@ -22,17 +22,23 @@ class TaskManager():
 
     def run(self):
         # TODO: move it from task_manager at all
+        def format_sse(data, event=None) -> str:
+            _msg = f'data: {data}\n\n'
+            if event is not None:
+                _msg = f'event: {event}\n{_msg}'
+            return _msg
+
         sse = self._sse
         while self._running:
             sleep(2)
             for i, cls in enumerate(self._cls):
                 # we can add i to class init as tile ID
-                test = cls.__call__(i)
+                msg = cls.__call__(i)
                 # print to cli | optional
-                print(test)
-                # print to web | optional
-                js = json.dumps(test).encode('utf-8')
-                sse.produce(msg=js)
+                # print(msg)
+                f_msg = format_sse(data=msg, event='message')
+                print(f_msg)
+                sse.produce(msg=f_msg)
 
     def check(self):
         return dict(data='running') if self._running else dict(data='not running')
