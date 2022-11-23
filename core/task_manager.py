@@ -5,10 +5,10 @@ import json
 
 class TaskManager():
 
-    def __init__(self, message_manager, prepared_data: list):
+    def __init__(self, message_manager):
         self._running = True
         self._sse = message_manager
-        self._cls = prepared_data
+        self._cls = []
 
     def start(self):
         self._running = True
@@ -21,15 +21,27 @@ class TaskManager():
         return dict(data='stopped')
 
     def run(self):
+        # TODO: move it from task_manager at all
+        def format_sse(data, event=None) -> str:
+            _msg = f'data: {data}\n\n'
+            if event is not None:
+                _msg = f'event: {event}\n{_msg}'
+            return _msg
+
         sse = self._sse
         while self._running:
             sleep(2)
-            for cls in self._cls:
-                test = cls.__call__()
-                print(test)
-                # print to web | optional
-                js = json.dumps(test).encode('utf-8')
-                sse.produce(msg=js)
+            for i, cls in enumerate(self._cls):
+                # we can add i to class init as tile ID
+                msg = cls.__call__(i)
+                # print to cli | optional
+                # print(msg)
+                f_msg = format_sse(data=msg, event='message')
+                print(f_msg)
+                sse.produce(msg=f_msg)
 
     def check(self):
         return dict(data='running') if self._running else dict(data='not running')
+
+    def init_cls(self, prepared_data):
+        self._cls = prepared_data

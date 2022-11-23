@@ -1,4 +1,5 @@
 from pydantic import BaseModel as bm
+from pydantic import Field
 from enum import Enum
 
 
@@ -16,6 +17,7 @@ class StatusEnum(str, Enum):
 
 
 class TileResponse(bm):
+    id: int | None
     type: TypeEnum
     status: StatusEnum | None
     response: int | str
@@ -33,6 +35,7 @@ class Alert(bm):
 
 
 class Tile(bm):
+    # id: int = Field(primary_key=True)
     type: TypeEnum | None
     label: str
     params: Params | None
