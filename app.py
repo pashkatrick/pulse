@@ -34,7 +34,6 @@ def check():
     return tm.check()
 
 
-# TODO: delegate to FE
 @app.route('/listen', methods=['GET'])
 def listen():
 
