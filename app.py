@@ -1,5 +1,6 @@
 from flask import Flask, Response, request
 from core import task_manager, message_manager, prepare_manager
+from decouple import config
 
 app = Flask(__name__)
 mm = message_manager.MessageManager()
@@ -42,9 +43,8 @@ def listen():
         while True:
             msg = messages.get()  # blocks until a new message arrives
             yield msg
-
     return Response(stream(), mimetype='text/event-stream')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=config('PU_ADDRESS'), port=config('PU_PORT'), debug=config('PU_DEBUG'))

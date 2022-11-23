@@ -1,6 +1,8 @@
 from threading import Thread
 from time import sleep
-import json
+from decouple import config
+
+TIMEOUT = config('PU_TIMEOUT', default=5)
 
 
 class TaskManager():
@@ -30,7 +32,7 @@ class TaskManager():
 
         sse = self._sse
         while self._running:
-            sleep(2)
+            sleep(int(TIMEOUT))
             for i, cls in enumerate(self._cls):
                 # we can add i to class init as tile ID
                 msg = cls.__call__(i)
