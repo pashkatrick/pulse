@@ -1,8 +1,8 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, render_template
 from core import task_manager, message_manager, prepare_manager
 from decouple import config
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 mm = message_manager.MessageManager()
 prep = prepare_manager.PrepareManager()
 tm = task_manager.TaskManager(mm)
@@ -10,7 +10,8 @@ tm = task_manager.TaskManager(mm)
 
 @app.route('/')
 def hello_world():
-    return dict(data='Welcome to Pulse')
+    # return dict(data='Welcome to Pulse')
+    return render_template('index.html')
 
 
 @app.route('/start')
@@ -47,4 +48,5 @@ def listen():
 
 
 if __name__ == '__main__':
-    app.run(host=config('PU_ADDRESS'), port=config('PU_PORT'), debug=config('PU_DEBUG'))
+    app.run(host=config('PU_ADDRESS'), port=config(
+        'PU_PORT'), debug=config('PU_DEBUG'))

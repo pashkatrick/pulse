@@ -1,0 +1,80 @@
+.flex-container {
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    align-content: stretch;
+    width: 100%;
+    background-color: rgba(0, 128, 255, .1);
+    display: flex;
+    flex-wrap: wrap;
+    height: 600vmin;
+}
+
+.tile {
+    font-family: "Verdana", sans-serif;
+    font-size: 4rem;
+    color: rgba(0, 128, 255, .3);
+    background-color: rgba(0, 128, 255, .2);
+    min-width: 100%;
+    /* min-height: 25%; */
+    /* margin: 3px; */
+    /* margin: 2px; */
+    text-align: center;
+    align-items: center;
+    /* border: 1px rgba(0, 128, 255, .2); */
+}
+
+@media (min-width: 360px) {
+    .tile {
+        min-width: 50%;
+        min-height: 16.6%;
+    }
+
+    .flex-container {
+        height: 300vmin;
+    }
+}
+
+@media (min-width: 560px) {
+    .tile {
+        min-width: 32.3%;
+        min-height: 25%;
+    }
+
+    .flex-container {
+        height: 150vmin;
+    }
+}
+
+@media (min-width: 800px) {
+    .tile {
+        min-width: 33.3%;
+        min-height: 33.3%;
+    }
+
+    .flex-container {
+        height: 98vmin;
+    }
+}
+
+@media (min-width: 1280px) {
+    .tile {
+        min-width: 19.7%;
+        min-height: 33.3%;
+    }
+
+    .flex-container {
+        height: 98vmin;
+    }
+}
+
+@media (min-width: 1920px) {
+    .tile {
+        min-width: 15.6%;
+        min-height: 50%;
+    }
+
+    .flex-container {
+        height: 98vmin;
+    }
+}

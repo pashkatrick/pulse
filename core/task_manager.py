@@ -1,6 +1,7 @@
 from threading import Thread
 from time import sleep
 from decouple import config
+import json
 
 TIMEOUT = config('PU_TIMEOUT', default=5)
 
@@ -39,7 +40,7 @@ class TaskManager():
                 msg = cls.__call__(i)
                 # print to cli | optional
                 # print(msg)
-                f_msg = format_sse(data=msg, event='message')
+                f_msg = format_sse(data=json.dumps(msg), event='message')
                 print(f_msg)
                 sse.produce(msg=f_msg)
 
