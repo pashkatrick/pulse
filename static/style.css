@@ -8,10 +8,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
-}
+} */
 
 
 .box,
@@ -32,7 +32,6 @@ code {
 
 .dashboard {
     display: grid;
-    background-color: #441b5e;
     height: 100vh;
     grid-auto-flow: row;
     column-gap: 2px;

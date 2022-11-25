@@ -54,6 +54,16 @@
                 "condition": "",
                 "action": ""
             }
-        }        
+        },
+        {
+            "type": "EMPTY",
+            "label": "Howdy!",
+            "style": {
+                "color": "",
+                "icon": "",
+                "high": "",
+                "width": ""
+            }
+        }             
     ]
 }
