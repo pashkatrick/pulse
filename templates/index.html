@@ -10,22 +10,49 @@
 </head>
 
 <body>
-    <!-- <h2>Welcome to Pulse</h2> -->
-    <!-- <div class="tile" id="0">
-        <p></p>
+    <div class="dashboard" style="grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);">
+        <div id="0" class="high" style="background-color: rgb(248, 211, 197);">
+            <div class="icon"></div>
+            <h5 class="title">title if needed</h5>
+            <p class="data">Loading...</p>
+        </div>
+        <div id="1" class="high" style="background-color: rgb(159, 227, 240);">
+            <h5 class="title">title2</h5>
+            <p class="data">200ms</p>
+        </div>
+        <div id="2" class="box" style="background-color: rgb(159, 227, 240);">
+            <p class="data">choose the color</p>
+        </div>
+        <div class="box" style="background-color: rgb(232, 232, 232);">
+            <p class="data">some data will be displayed here</p>
+        </div>
+        <div class="box" style="background-color: rgb(248, 211, 197);">
+            <p class="data">I can add more styles later</p>
+        </div>
+        <div class="box" style="background-color: rgb(248, 248, 248);">
+            <h5 class="title">title2</h5>
+            <p class="data">200ms</p>
+        </div>
+        <div class="box" style="background-color: rgb(232, 232, 232);">
+            <p class="data">some data will be displayed here</p>
+        </div>
+        <div class="box" style="background-color: rgb(248, 211, 197);">
+            <p class="data">I can add more styles later</p>
+        </div>
+        <div class="box" style="background-color: rgb(159, 227, 240);">
+            <p class="data">choose the color</p>
+        </div>
+        <div class="box" style="background-color: rgb(159, 227, 240);">
+            <div class="icon"></div>
+            <p class="data">123345</p>
+        </div>
     </div>
-    <div class="tile" id="1">
-        <p></p>
-    </div>
-    <div class="tile" id="2">
-        <p></p>
-    </div> -->
 
-    <div class="flex-container">
+    <!-- <div class="flex-container">
         {%for i in range(0, 10)%}
             <div class="tile" id="{{i}}">{{i}}</div>
         {%endfor%}
-    </div>
+    </div> -->
     <script>
         const source = new EventSource("http://127.0.0.1:5000/listen")
         source.addEventListener('message', (event) => {
@@ -35,8 +62,8 @@
                 status,
                 response
             } = JSON.parse(event.data)
-            let div = document.getElementById(id);
-            div.innerHTML = `<span style="background-color: lime">` + response + `</span>`;
+            let resp = document.querySelector("#\\3" + id + " > p");
+            resp.innerHTML = response
         })
     </script>
 </body>
