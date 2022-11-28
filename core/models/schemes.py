@@ -34,12 +34,18 @@ class Alert(bm):
     pass
 
 
+class Style(bm):
+    color: str
+    icon: str
+
+
 class Tile(bm):
     # id: int = Field(primary_key=True)
     type: TypeEnum | None
     label: str
     params: Params | None
     alert: Alert | None
+    style: Style | None
 
 
 class ConfigSchema(bm):

@@ -10,10 +10,10 @@ class PrepareManager():
 
     def read_config(self):
         scheme = schemes.ConfigSchema.parse_file(self.config_path)
-        return scheme.tiles
+        return scheme
 
     def prepare_cls(self) -> list:
-        tiles = self.read_config()
+        tiles = self.read_config().tiles
         cls_list = []
         for tile in tiles:
             module_name, class_name = self._convert(tile.type.value)
@@ -22,6 +22,10 @@ class PrepareManager():
             instance = class_()
             cls_list.append(instance)
         return cls_list
+
+    def prepare_tiles(self):
+        config = self.read_config()
+        return dict(cols=config.columns, tiles=config.tiles)
 
     def _convert(self, tile_name: str):
         if '-' in tile_name:

@@ -11,7 +11,7 @@ tm = task_manager.TaskManager(mm)
 @app.route('/')
 def hello_world():
     # return dict(data='Welcome to Pulse')
-    return render_template('index.html')
+    return render_template('index.html', config=prep.prepare_tiles())
 
 
 @app.route('/start')
