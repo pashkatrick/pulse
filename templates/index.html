@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Pulse</title>
+</head>
+
+<body>
+    <div class="dashboard" style="grid-template-columns:repeat({{ config['cols'] }}, 1fr)">
+        {%for t in config['tiles'] %}
+        <div class="tile" 
+            style="background-color: {{ t['style']['color'] }}" 
+            id="{{ loop.index0 }}">
+            <p>
+                test
+            </p>
+        </div>
+        {%endfor%}
+    </div>
+    <script>
+        const source = new EventSource("http://127.0.0.1:5000/listen")
+        source.addEventListener('message', (event) => {
+            const {
+                id,
+                type,
+                status,
+                response
+            } = JSON.parse(event.data)
+            let resp = document.querySelector("#\\3" + id + " > p");
+            resp.innerHTML = response
+        })
+    </script>
+</body>
+
+</html>

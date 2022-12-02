@@ -6,6 +6,12 @@
             "type": "RANDOM",
             "label": "It's a random label",
             "params": {},
+            "style": {
+                "color": "",
+                "icon": "",
+                "high": "",
+                "width": ""
+            },  
             "alert": {
                 "value": "",
                 "condition": "",
@@ -18,6 +24,12 @@
             "params": {
                 "url": ""
             },
+            "style": {
+                "color": "",
+                "icon": "",
+                "high": "",
+                "width": ""
+            },              
             "alert": {
                 "value": "",
                 "condition": "",
@@ -31,11 +43,27 @@
                 "host": "",
                 "port": ""
             },
+            "style": {
+                "color": "",
+                "icon": "",
+                "high": "",
+                "width": ""
+            },              
             "alert": {
                 "value": "",
                 "condition": "",
                 "action": ""
             }
-        }        
+        },
+        {
+            "type": "EMPTY",
+            "label": "Howdy!",
+            "style": {
+                "color": "",
+                "icon": "",
+                "high": "",
+                "width": ""
+            }
+        }             
     ]
 }
