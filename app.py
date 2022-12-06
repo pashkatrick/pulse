@@ -55,5 +55,6 @@ if __name__ == '__main__':
     parser.add_argument('-a', '--address', action='store', default=config('PU_ADDRESS'))   
     parser.add_argument('-c', '--config', action='store', default=config('PU_CONFIG'))   
     parser.add_argument('-t', '--theme', action='store', default=config('PU_THEME'))   
-    args = parser.parse_args()
+    # args = parser.parse_args()
+    args, _ = parser.parse_known_args()
     app.run(host=args.address, port=args.port, debug=config('PU_DEBUG'))
